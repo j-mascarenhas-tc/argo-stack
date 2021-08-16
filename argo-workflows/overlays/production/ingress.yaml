@@ -1,0 +1,32 @@
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: argo-workflows
+#   namespace: argo
+#   annotations:
+#     kubernetes.io/ingress.class: "nginx"
+#     ingress.kubernetes.io/ssl-redirect: "false"
+#     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+# spec:
+#   rules:
+#   - http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#            name: argo-server
+#            port:
+#              number: 2746
+#     host: argo-workflows.tradersclub.com.br
+
+# --- 
+apiVersion: getambassador.io/v2
+kind: Mapping
+metadata:
+  name: argo-workflows
+  namespace: argo
+spec:
+  host: argo-workflows.tradersclub.com.br
+  prefix: /
+  service: github-eventsource-svc:2746
