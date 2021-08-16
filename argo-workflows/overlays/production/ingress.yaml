@@ -29,4 +29,4 @@ metadata:
 spec:
   host: argo-workflows.tradersclub.com.br
   prefix: /
-  service: github-eventsource-svc:2746
+  service: argo-server:2746
