@@ -1,7 +1,6 @@
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
 metadata:
-  creationTimestamp: null
   name: regcred
   namespace: workflows
 spec:
@@ -10,7 +9,6 @@ spec:
   template:
     data: null
     metadata:
-      creationTimestamp: null
       name: regcred
       namespace: workflows
     type: kubernetes.io/dockerconfigjson
