@@ -15,9 +15,6 @@ spec:
       containers:
       - args:
         - server
-        env:
-          - name: BASE_HREF
-            value: /argo/
-        image: quay.io/argoproj/argocli:latest
+        image: argoproj/argocli:latest
         name: argo-server
 ...
