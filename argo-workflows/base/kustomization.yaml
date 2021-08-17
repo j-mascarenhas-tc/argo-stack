@@ -7,5 +7,5 @@ resources:
 - github.com/argoproj/argo-workflows/manifests/cluster-install/argo-server-rbac
 - templates.yaml
 patchesStrategicMerge:
-- config.yaml
+#- config.yaml
 namespace: argo
