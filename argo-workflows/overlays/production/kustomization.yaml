@@ -5,5 +5,7 @@ resources:
 - ../workflows
 - regcred.yaml
 - ingress.yaml
+patchesStrategicMerge:
+- server.yaml
 
 
