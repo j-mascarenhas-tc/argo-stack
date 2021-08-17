@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,6 +15,11 @@ spec:
       containers:
       - args:
         - server
-        - insecure-skip-tls-verify
-        - insecure-skip-verify
- 
+        env:
+          - name: INSECURE_SKIP_VERIFY
+            value: 'true'
+            name: SECURE
+            value: 'false'
+        image: argoproj/argocli:latest
+        name: argo-server
+...
