@@ -6,6 +6,6 @@ resources:
 - regcred.yaml
 - ingress.yaml
 patchesStrategicMerge:
-- server.yaml
+# - server.yaml
 
 
