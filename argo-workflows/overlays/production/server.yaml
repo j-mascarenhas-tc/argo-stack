@@ -16,6 +16,6 @@ spec:
       - args:
         - server
         - --secure=false
-        image: quay.io/argoproj/argocli:latest
+        image: quay.io/argoproj/argocli:v3.0.0
         name: argo-server
 ...
