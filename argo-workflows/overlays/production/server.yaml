@@ -18,6 +18,6 @@ spec:
 # #        - --secure=false
 #         - --insecure-skip-tls-verify=true
 # #        - --insecure-skip-verify=true
-        image: argoproj/argocli:v2.8
+        image: argoproj/argocli:v2.8.0
         name: argo-server
 ...
