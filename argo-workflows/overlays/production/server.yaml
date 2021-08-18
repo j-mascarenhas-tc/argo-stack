@@ -15,13 +15,7 @@ spec:
       containers:
       - args:
         - server
-        env:
-          - name: ARGO_SECURE
-            value: 'false'
-          - name: ARGO_INSECURE_SKIP_VERIFY
-            value: 'true'
-          - name: ARGO_INSECURE_SKIP_VERIFY_TLS
-            value: 'true'  
+        - --secure=false
         image: quay.io/argoproj/argocli:latest
         name: argo-server
 ...
