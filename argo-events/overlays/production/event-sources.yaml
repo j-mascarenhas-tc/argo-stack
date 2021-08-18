@@ -50,13 +50,13 @@ spec:
 #              number: 12000
 #     host: webhook.tradersclub.com.br
     
---- 
-apiVersion: getambassador.io/v2
-kind: Mapping
-metadata:
-  name: github
-  namespace: argo-events
-spec:
-  host: webhook.tradersclub.com.br
-  prefix: /
-  service: github-eventsource-svc:12000
+# --- 
+# apiVersion: getambassador.io/v2
+# kind: Mapping
+# metadata:
+#   name: github
+#   namespace: argo-events
+# spec:
+#   host: webhook.tradersclub.com.br
+#   prefix: /
+#   service: github-eventsource-svc:12000
