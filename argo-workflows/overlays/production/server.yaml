@@ -16,6 +16,8 @@ spec:
       - args:
         - server
         - --secure=false
+        - --insecure-skip-tls-verify=true
+        - --insecure-skip-verify=true
         image: quay.io/argoproj/argocli:latest
         name: argo-server
 ...
