@@ -15,8 +15,8 @@ spec:
       containers:
       - args:
         - server
-        - --insecure-skip-tls-verify 
-        - --insecure-skip-verify
+        - --insecure-skip-tls-verify=true
+        - --insecure-skip-verify=true
         image: quay.io/argoproj/argocli:latest
         name: argo-server
 ...
