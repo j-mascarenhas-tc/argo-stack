@@ -18,4 +18,14 @@ spec:
         - --secure=false
         image: quay.io/argoproj/argocli:v3.0.0
         name: argo-server
+        readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 2746
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 1
 ...
