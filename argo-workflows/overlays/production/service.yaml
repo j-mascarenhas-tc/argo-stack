@@ -10,7 +10,7 @@ metadata:
   namespace: argo
 spec:
   ports:
-  - name: http-web
+  - name: https-web
     port: 2746
   selector:
     app: argo-server

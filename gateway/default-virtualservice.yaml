@@ -36,7 +36,8 @@ spec:
         - destination:
             host: argo-server.argo.svc.cluster.local
             port:
-              number: 2746                
+              number: 2746
+      timeout: 300s                    
 --- 
 kind: VirtualService
 apiVersion: networking.istio.io/v1alpha3
