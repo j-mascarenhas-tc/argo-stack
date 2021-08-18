@@ -3,6 +3,7 @@ kind: Service
 metadata:
   annotations:
     cloud.google.com/neg: '{"ingress":true}'
+    cloud.google.com/load-balancer-type: Internal
   labels:
     app.kubernetes.io/instance: argo-workflows
   name: argo-server
@@ -13,3 +14,4 @@ spec:
     port: 2746
   selector:
     app: argo-server
+  type: LoadBalancer  
