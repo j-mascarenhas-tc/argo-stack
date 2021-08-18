@@ -20,6 +20,8 @@ spec:
             value: 'false'
           - name: ARGO_INSECURE_SKIP_VERIFY
             value: 'true'
+          - name: ARGO_INSECURE_SKIP_VERIFY_TLS
+            value: 'true'  
         image: quay.io/argoproj/argocli:latest
         name: argo-server
 ...

@@ -7,7 +7,7 @@ resources:
 #- ingress.yaml
 patchesStrategicMerge:
 - service.yaml
-#- server.yaml
+- server.yaml
 
 
 

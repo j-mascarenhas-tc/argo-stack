@@ -36,7 +36,7 @@ spec:
       protocol: HTTPS
     tls:
       credentialName: ssl-https-credential
-      mode: SIMPLE #PASSTHROUGH #
+      mode: ISTIO_MUTUAL #MUTUAL #SIMPLE #  "PASSTHROUGH", "SIMPLE", "MUTUAL", AUTO_PASSTHROUGH", "ISTIO_MUTUAL"
 
 ---
 apiVersion: networking.istio.io/v1beta1
