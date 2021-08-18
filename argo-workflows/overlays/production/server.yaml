@@ -17,9 +17,6 @@ spec:
         - server
         - --insecure-skip-tls-verify 
         - --insecure-skip-verify
-        env:
-          - name: BASE_HREF
-            value: /argo/
         image: quay.io/argoproj/argocli:latest
         name: argo-server
 ...
