@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: webhook-gateway
+  namespace: argo-events
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - hosts:
+    - webhook.tradersclub.com.br
+    port:
+      name: https
+      number: 443
+      protocol: HTTPS
+    tls:
+      credentialName: ssl-https-credential
+      mode: SIMPLE

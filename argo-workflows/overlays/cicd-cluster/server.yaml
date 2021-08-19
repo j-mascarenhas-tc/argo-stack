@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argo-server
+spec:
+  selector:
+    matchLabels:
+      app: argo-server
+  template:
+    metadata:
+      labels:
+        app: argo-server
+    spec:
+      containers:
+      - args:
+        - server
+        - --secure=false
+        image: quay.io/argoproj/argocli:latest
+        name: argo-server
+        readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 2746
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 1
+...
