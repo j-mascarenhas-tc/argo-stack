@@ -1,18 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prometheus
+  name: istio-egress
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: production
+  project: cicd-cluster
   source:
-    path: charts/prometheus
-    repoURL: https://github.com/prometheus-community/helm-charts.git
+    path: manifests/charts/gateways/istio-egress
+    repoURL: https://github.com/istio/istio.git
     targetRevision: HEAD
   destination:
-    namespace: monitoring
+    namespace: istio-system
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:

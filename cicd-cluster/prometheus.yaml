@@ -1,18 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: istio-resources
+  name: prometheus
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: production
+  project: cicd-cluster
   source:
-    path: manifests/charts/base
-    repoURL: https://github.com/istio/istio.git
+    path: charts/prometheus
+    repoURL: https://github.com/prometheus-community/helm-charts.git
     targetRevision: HEAD
   destination:
-    namespace: istio-system
+    namespace: monitoring
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
@@ -20,8 +20,3 @@ spec:
       prune: true
     syncOptions:
     - CreateNamespace=true
-  ignoreDifferences:
-  - group: admissionregistration.k8s.io
-    kind: ValidatingWebhookConfiguration
-    jsonPointers:
-    - /webhooks

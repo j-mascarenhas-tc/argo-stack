@@ -6,7 +6,7 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: production
+  project: cicd-cluster
   source:
     path: kustomize/overlays/production
     repoURL: https://github.com/j-mascarenhas-tc/argo-combined-app
@@ -16,7 +16,7 @@ spec:
       - josemarbm23/argo-combined-app:latest
   destination:
     server: https://kubernetes.default.svc
-    namespace: production
+    namespace: cicd-cluster
   syncPolicy:
     automated:
       selfHeal: true

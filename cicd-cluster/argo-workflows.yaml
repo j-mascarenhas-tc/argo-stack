@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo-rollouts
+  name: argo-workflows
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: production
+  project: cicd-cluster
   source:
-    path: argo-rollouts/base
+    path: argo-workflows/overlays/cicd-cluster
     repoURL: https://github.com/j-mascarenhas-tc/argo-stack
     targetRevision: HEAD
   destination:

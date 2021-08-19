@@ -4,7 +4,9 @@ resources:
 - ../../base
 - ../workflows
 - regcred.yaml
-#- ingress.yaml
+- gateway.yaml
+- virtualservice.yaml
+- destinationrule.yaml
 patchesStrategicMerge:
 - service.yaml
 - server.yaml

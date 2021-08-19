@@ -5,5 +5,7 @@ resources:
 - event-sources.yaml
 - sensors.yaml
 - githubcred.yaml
+- gateway.yaml
+- virtualservice.yaml
 namespace: argo-events
 
