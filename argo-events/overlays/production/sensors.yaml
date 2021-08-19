@@ -88,7 +88,7 @@ spec:
                         value: ""
                     dependencies:
                     - build
-                  - name: promote-production
+                  - name: promote-cicd-cluster
                     templateRef:
                       name: promote
                       template: promote
@@ -96,7 +96,7 @@ spec:
                     arguments:
                       parameters:
                       - name: environment
-                        value: production
+                        value: cicd-cluster
                       - name: repo_owner
                         value: j-mascarenhas-tc
                       - name: repo_name
