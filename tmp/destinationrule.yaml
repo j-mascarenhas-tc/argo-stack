@@ -1,0 +1,41 @@
+# apiVersion: networking.istio.io/v1alpha3
+# kind: DestinationRule
+# metadata:
+#   name: tls-tekton
+#   namespace: tekton-pipelines
+# spec:
+#   host: "tekton-dashboard"
+#   trafficPolicy:
+#     tls:
+#       mode: DISABLE
+# --- 
+# apiVersion: "authentication.istio.io/v1alpha3"
+# kind: "Policy"
+# metadata:
+#   name: "default"
+#   namespace: "tekton-pipelines"
+# spec:
+#   peers:
+#     - mtls:
+#         mode: PERMISSIVE
+apiVersion: "security.istio.io/v1beta1"
+kind: "PeerAuthentication"
+metadata:
+  name: "default"
+  namespace: "tekton-pipelines"
+spec:
+  mtls:
+    mode: STRICT
+
+--- 
+apiVersion: "networking.istio.io/v1alpha3"
+kind: "DestinationRule"
+metadata:
+  name: "disable-mtls"
+  namespace: "tekton-pipelines"
+spec:
+  host: "*.tekton-pipelines.svc.cluster.local"
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL        
+

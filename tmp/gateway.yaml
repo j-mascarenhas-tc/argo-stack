@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: tekton-gateway
+  namespace: tekton-pipelines
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - hosts:
+    -  cicd.tradersclub.com.br
+    port:
+      name: https
+      number: 443
+      protocol: HTTPS
+    tls:
+      credentialName: ssl-https-credential
+      mode: SIMPLE
