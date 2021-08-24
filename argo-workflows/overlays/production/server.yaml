@@ -15,8 +15,8 @@ spec:
       containers:
       - args:
         - server
-        - --secure=false
-        image: quay.io/argoproj/argocli:latest
+        - --secure=false --insecure-skip-verify list
+        image: quay.io/argoproj/argocli:v3.1.8 #latest
         name: argo-server
         readinessProbe:
             failureThreshold: 3
