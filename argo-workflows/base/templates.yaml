@@ -25,6 +25,12 @@ spec:
       volumeMounts:
         - name: regcred
           mountPath: /kaniko/.docker/
+        - name: private-key-volume
+          mountPath: /kaniko/.ssh
+  volumes:
+  - name: private-key-volume
+    secret:
+      secretName: ssh-key           
 
 ---
 
@@ -49,7 +55,10 @@ spec:
       command: [sh]
       source: |
         set -e
-        git clone https://$(cat /.github/token)@github.com/{{inputs.parameters.repo_owner}}/{{inputs.parameters.repo_name}}
+        eval "$(ssh-agent -s)"
+        ssh-add /.ssh/ssh-key 
+        ssh -T git@github.com
+        git clone https://github.com/{{inputs.parameters.repo_owner}}/{{inputs.parameters.repo_name}}
         cd {{inputs.parameters.repo_name}}
         sleep 2
         echo BEFORE:
@@ -64,3 +73,9 @@ spec:
       volumeMounts:
       - name: github-access
         mountPath: /.github/
+      - name: private-key-volume
+        mountPath: /.ssh
+    volumes:
+    - name: private-key-volume
+      secret:
+        secretName: ssh-key 
