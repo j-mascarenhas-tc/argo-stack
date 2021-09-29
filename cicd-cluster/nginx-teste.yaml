@@ -9,7 +9,7 @@ spec:
   project: cicd-cluster
   source:
     path: kustomize/overlays/staging
-    repo: ssh://git@github.com/j-mascarenhas-tc/nginx-teste
+    repoURL: https://github.com/j-mascarenhas-tc/nginx-teste
     targetRevision: HEAD
     kustomize:
       images:
