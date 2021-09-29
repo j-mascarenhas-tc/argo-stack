@@ -75,7 +75,7 @@ spec:
         mountPath: /.github/
       - name: private-key-volume
         mountPath: /.ssh
-    volumes:
-    - name: private-key-volume
-      secret:
-        secretName: ssh-key 
+  volumes:
+  - name: private-key-volume
+    secret:
+      secretName: ssh-key 
