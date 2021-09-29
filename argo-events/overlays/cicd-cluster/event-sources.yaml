@@ -10,6 +10,22 @@ spec:
     - port: 12000
       targetPort: 12000
   github:
+    nginx-teste:
+      owner: j-mascarenhas-tc
+      repository: nginx-teste
+      webhook:
+        endpoint: /nginx-teste
+        port: "12000"
+        method: POST
+        url: https://webhook.tradersclub.com.br
+      events:
+        - "*"
+      apiToken:
+        name: github-access
+        key: token
+      insecure: true
+      active: true
+      contentType: json  
     argo-combined-app:
       owner: j-mascarenhas-tc
       repository: argo-combined-app
@@ -26,6 +42,7 @@ spec:
       insecure: true
       active: true
       contentType: json
+      
 
 # ---
 
