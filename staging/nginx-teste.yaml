@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-teste
+  namespace: argocd
+spec:
+  destination:
+    namespace: cicd-cluster
+    server: https://kubernetes.default.svc
+  project: cicd-cluster
+  source:
+    kustomize:
+      images:
+      - josemarbm23/nginx-teste:latest
+    path: kustomize/overlays/staging
+    repoURL: git@github.com:j-mascarenhas-tc/nginx-teste.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
