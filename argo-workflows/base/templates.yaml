@@ -20,13 +20,16 @@ spec:
     container:
       image: gcr.io/kaniko-project/executor:debug
       args:
+      - eval `ssh-agent -s`
+      - ssh-add /kaniko/.ssh/privateKey
+      - ssh -v git@github.com
       - --context={{inputs.parameters.repo_url}}#{{inputs.parameters.repo_ref}}#{{inputs.parameters.repo_commit_id}}
       - --destination={{inputs.parameters.container_image}}:{{inputs.parameters.container_tag}}
       volumeMounts:
         - name: regcred
           mountPath: /kaniko/.docker/
         - name: private-key-volume
-          mountPath: /kaniko/.ssh
+          mountPath: /kaniko/.ssh/
     volumes:
     - name: private-key-volume
       defaultMode: 0400
@@ -56,7 +59,10 @@ spec:
       command: [sh]
       source: |
         set -e
-        git clone https://$(cat /.github/token)@github.com/{{inputs.parameters.repo_owner}}/{{inputs.parameters.repo_name}}
+        eval `ssh-agent -s`
+        ssh-add $HOME/.ssh/privateKey
+        ssh -v git@github.com
+        git clone git@github.com:{{inputs.parameters.repo_owner}}/{{inputs.parameters.repo_name}}
         cd {{inputs.parameters.repo_name}}
         sleep 2
         echo BEFORE:
@@ -72,7 +78,7 @@ spec:
       - name: github-access
         mountPath: /.github/
       - name: private-key-volume
-        mountPath: $HOME/.ssh
+        mountPath: $HOME/.ssh/
     volumes:
     - name: private-key-volume
       secret:
