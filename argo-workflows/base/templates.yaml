@@ -58,7 +58,7 @@ spec:
         set -e
         apk add --no-cache git openssh 
         eval `ssh-agent -s`
-        ssh-add $HOME/.ssh/privateKey
+        ssh-add /.github/.ssh/privateKey
         ssh -v git@github.com
         git clone git@github.com:{{inputs.parameters.repo_owner}}/{{inputs.parameters.repo_name}}
         cd {{inputs.parameters.repo_name}}
@@ -76,5 +76,5 @@ spec:
       - name: github-access
         mountPath: /.github/
       - name: private-key-volume
-        mountPath: $HOME/.ssh/
+        mountPath: /.github/.ssh/
        
