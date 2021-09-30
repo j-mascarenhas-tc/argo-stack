@@ -25,12 +25,13 @@ spec:
       volumeMounts:
         - name: regcred
           mountPath: /kaniko/.docker/
-  #       - name: private-key-volume
-  #         mountPath: /kaniko/.ssh
-  # volumes:
-  # - name: private-key-volume
-  #   secret:
-  #     secretName: ssh-key           
+        - name: private-key-volume
+          mountPath: /kaniko/.ssh
+    volumes:
+    - name: private-key-volume
+      defaultMode: 0400
+      secret:
+        secretName: ssh-key           
 
 ---
 
