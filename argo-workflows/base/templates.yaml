@@ -20,6 +20,7 @@ spec:
     container:
       image: gcr.io/kaniko-project/executor:debug
       args:
+      - apk add --no-cache git openssh 
       - eval `ssh-agent -s`
       - ssh-add /kaniko/.ssh/privateKey
       - ssh -v git@github.com
@@ -59,6 +60,7 @@ spec:
       command: [sh]
       source: |
         set -e
+        apk add --no-cache git openssh 
         eval `ssh-agent -s`
         ssh-add $HOME/.ssh/privateKey
         ssh -v git@github.com
