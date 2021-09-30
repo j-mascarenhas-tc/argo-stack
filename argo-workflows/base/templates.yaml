@@ -34,6 +34,11 @@ spec:
           mountPath: /kaniko/.docker/
         - name: private-key-volume
           mountPath: /kaniko/.ssh/
+    volumes:
+      - name: private-key-volume
+        defaultMode: 0400
+        secret:
+          secretName: ssh-key       
          
 
 ---
@@ -80,4 +85,9 @@ spec:
         mountPath: /.github/
       - name: private-key-volume
         mountPath: /.github/.ssh/
+  volumes:
+  - name: private-key-volume
+    defaultMode: 0400
+    secret:
+      secretName: ssh-key       
        
