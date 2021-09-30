@@ -46,6 +46,13 @@ spec:
                       path: user
                     - key: email
                       path: email
+              - name: private-key-volume
+                defaultMode: 0400
+                secret:
+                  secretName: ssh-key    
+                  items:
+                    - key: privateKey
+                      path: privateKey     
               templates:
               - name: build
                 dag:
