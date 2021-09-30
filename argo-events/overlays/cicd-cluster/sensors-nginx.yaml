@@ -86,7 +86,7 @@ spec:
                       - name: repo_owner
                         value: j-mascarenhas-tc
                       - name: repo_name
-                        value: argo-stack
+                        value: nginx-teste
                       - name: image_owner
                         value: josemarbm23
                       - name: image_name
@@ -107,7 +107,7 @@ spec:
                       - name: repo_owner
                         value: j-mascarenhas-tc
                       - name: repo_name
-                        value: argo-stack
+                        value: nginx-teste
                       - name: image_owner
                         value: josemarbm23
                       - name: image_name
