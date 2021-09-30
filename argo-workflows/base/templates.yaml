@@ -20,10 +20,10 @@ spec:
     container:
       image: gcr.io/kaniko-project/executor:debug
       args:
-      - apk add --no-cache git openssh 
-      - eval `ssh-agent -s`
-      - ssh-add /kaniko/.ssh/privateKey
-      - ssh -v git@github.com
+      # - apk add --no-cache git openssh 
+      # - eval `ssh-agent -s`
+      # - ssh-add /kaniko/.ssh/privateKey
+      # - ssh -v git@github.com
       - --context={{inputs.parameters.repo_url}}#{{inputs.parameters.repo_ref}}#{{inputs.parameters.repo_commit_id}}
       - --destination={{inputs.parameters.container_image}}:{{inputs.parameters.container_tag}}
       volumeMounts:
