@@ -5,6 +5,29 @@ kind: ClusterWorkflowTemplate
 metadata:
   name: container-image
 spec:
+  initContainers:
+  - name: git-clone
+    image: alpine
+    command: ["sh", "-c"]
+    args: 
+    - |
+      apk add --no-cache git openssh 
+      eval `ssh-agent -s`
+      ssh-add /kaniko/.ssh/privateKey
+      ssh -v git@github.com
+      git clone git@github.com:{{inputs.parameters.repo_owner}}/{{inputs.parameters.repo_name}}.git /workspace
+    volumeMounts:
+        - name: regcred
+          mountPath: /kaniko/.docker/
+        - name: private-key-volume
+          mountPath: /kaniko/.ssh/
+        - name: docker-volume
+          mountPath: /workspace  
+  volumes:
+    - name: private-key-volume
+      defaultMode: 0400
+      secret:
+        secretName: ssh-key    
   serviceAccountName: workflow
   templates:
   - name: build-kaniko-git
@@ -26,7 +49,8 @@ spec:
         ssh-add /kaniko/.ssh/privateKey
         ssh -v git@github.com
 
-      args:      
+      args:   
+      - "--context=dir:///workspace"   
       - --context={{inputs.parameters.repo_url}}#{{inputs.parameters.repo_ref}}#{{inputs.parameters.repo_commit_id}}
       - --destination={{inputs.parameters.container_image}}:{{inputs.parameters.container_tag}}
       volumeMounts:
@@ -34,6 +58,8 @@ spec:
           mountPath: /kaniko/.docker/
         - name: private-key-volume
           mountPath: /kaniko/.ssh/
+        - name: docker-volume
+          mountPath: /workspace  
     volumes:
       - name: private-key-volume
         defaultMode: 0400
